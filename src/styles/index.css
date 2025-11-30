@@ -1,209 +1,294 @@
-/* ------------------- VARIABLES GLOBALES ------------------- */
+/* ----------------------------------------------------
+   VARIABLES GLOBALES
+---------------------------------------------------- */
 :root {
-  --font-title: 'Creepster', cursive;
+  --font-title: 'Sora', sans-serif;
   --font-text: 'Share Tech Mono', monospace;
 
-  /* Modo LUZ */
-  --bg-light: linear-gradient(135deg, #FFF8F2, #FFD9CC);
-  --card-light: rgba(255, 255, 255, 0.9);
-  --text-light: #B71C1C;
-  --accent-light: #FF6F61;
-  --glow-light: #FF8A75;
-  --border-light: #FFA07A;
+  /* MODO CLARO (LIGHT) */
+  --bg-light: linear-gradient(160deg, #dfe9f3, #ffffff);
+  --text-light: #0a1a2b;
+  --accent-light: #007bff;
+  --accent-light-soft: #8dc8ff;
+  --border-light: #0057D8;
 
-  /* Modo OSCURO */
-  --bg-dark: radial-gradient(circle at top left, #0A0A0A, #1B0B1F);
-  --card-dark: rgba(26, 10, 26, 0.9);
-  --text-dark: #FF414D;
-  --accent-dark: #FF8C42;
-  --glow-dark: #FF5555;
-  --border-dark: #FF2A3A;
+  /* MODO OSCURO (DARK) */
+  --bg-dark: radial-gradient(circle at top, #050505, #111827);
+  --text-dark: #9bdcff;
+  --accent-dark: #00bfff;
+  --accent-dark-soft: #0088cc;
+  --border-dark: #00aaff;
 }
 
-/* ------------------- GLOBAL ------------------- */
+/* ----------------------------------------------------
+   GLOBAL
+---------------------------------------------------- */
 body, html {
   margin: 0;
   padding: 0;
   font-family: var(--font-text);
-  transition: all 0.5s ease;
+  transition: background 0.5s ease, color 0.5s ease;
   overflow-x: hidden;
-  cursor: default;
 }
 
-/* ------------------- MODOS ------------------- */
+/* ----------------------------------------------------
+   MODOS VISUALES
+---------------------------------------------------- */
 .theme-dia {
   background: var(--bg-light);
   color: var(--text-light);
 }
-.theme-dia .card {
-  background-color: var(--card-light);
-  color: var(--text-light);
-  border: 2px solid var(--border-light);
-  box-shadow: 0 0 25px var(--glow-light), 0 0 50px var(--accent-light);
-}
+
 .theme-oscuro {
   background: var(--bg-dark);
   color: var(--text-dark);
 }
-.theme-oscuro .card {
-  background-color: var(--card-dark);
-  color: var(--text-dark);
+
+/* ---------- Tarjetas ---------- */
+.theme-dia .card {
+  background: rgba(255,255,255,0.6);
   border: 2px solid var(--border-dark);
-  box-shadow: 0 0 30px var(--glow-dark), 0 0 60px var(--accent-dark);
+  box-shadow:
+    0 0 18px rgba(0,140,255,0.35),
+    0 0 40px rgba(0,140,255,0.25),
+    inset 0 0 12px rgba(0,140,255,0.25);
 }
 
-/* ------------------- CONTENEDOR PRINCIPAL ------------------- */
+.theme-oscuro .card {
+  background: rgba(20,25,40,0.46);
+  border: 2px solid var(--border-dark);
+  box-shadow:
+    0 0 25px var(--accent-dark),
+    0 0 60px var(--accent-dark-soft),
+    inset 0 0 12px var(--accent-dark-soft);
+}
+
+/* ----------------------------------------------------
+   CONTENEDOR PRINCIPAL
+---------------------------------------------------- */
 .container {
-  max-width: 960px;
+  max-width: 700px;
   margin: 0 auto;
-  padding: 2rem 1rem;
+  padding: 1.5rem 1rem;
   text-align: center;
 }
+
 .card {
-  border-radius: 20px;
-  padding: 2rem;
-  backdrop-filter: blur(8px);
+  border-radius: 18px;
+  padding: 1.2rem 1rem;
+  position: relative;
+  overflow: hidden;
   transition: all 0.3s ease;
 }
 
-/* ------------------- TITULO ------------------- */
-h1 {
-  font-family: var(--font-title);
-  font-size: clamp(2.8rem, 6vw, 4.5rem);
-  margin-bottom: 2rem;
-  text-align: center;
-  text-shadow: 0 0 10px currentColor, 0 0 25px var(--accent-light);
-  animation: flicker 2s infinite alternate;
+/* ----------------------------------------------------
+   HALO FLOTANTE BAJO EL CONTADOR
+---------------------------------------------------- */
+.card::after {
+  content: "";
+  position: absolute;
+  bottom: -20px;
+  left: 50%;
+  width: 80%;
+  height: 35px;
+  transform: translateX(-50%);
+  background: radial-gradient(circle, currentColor 0%, transparent 70%);
+  opacity: 0.35;
+  filter: blur(20px);
 }
 
-/* ------------------- DIGITOS ------------------- */
+/* ----------------------------------------------------
+   TITULO - ANIMACION SUAVE + SUBRAYADO NEON
+---------------------------------------------------- */
+h1 {
+  font-family: var(--font-title);
+  font-weight: 700;
+  font-size: clamp(2.2rem, 6vw, 3.7rem);
+  margin-bottom: 1rem;
+  position: relative;
+  animation: titleFloat 3s ease-in-out infinite;
+}
+
+h1::after {
+  /* línea abajo del título */
+  content: "";
+  width: 60%;
+  height: 4px;
+  border-radius: 20px;
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: currentColor;
+  box-shadow: 0 0 15px currentColor, 0 0 40px currentColor;
+  animation: neonPulse 2s infinite ease-in-out;
+}
+
+/* ----------------------------------------------------
+   DIGITOS DEL CONTADOR
+---------------------------------------------------- */
 .digit-box {
-  width: 65px;
-  height: 85px;
-  background-color: transparent;
+  width: 52px;
+  height: 70px;
+  background: transparent;
   border-radius: 14px;
   display: flex;
   justify-content: center;
   align-items: center;
   font-family: var(--font-text);
-  font-size: 3rem;
+  font-size: 2.4rem;
+  margin: 0.12rem;
   border: 2px solid currentColor;
-  margin: 0.15rem;
-  text-shadow: 0 0 10px currentColor, 0 0 20px var(--accent-light);
-  transition: all 0.3s ease;
+  text-shadow: 0 0 12px currentColor, 0 0 20px currentColor;
+  transition: transform 0.15s ease;
 }
 
-/* ------------------- BOTONES ------------------- */
-button, .control-btn {
-  border: none;
-  border-radius: 14px;
-  padding: 0.9rem 1.6rem;
-  font-weight: bold;
-  font-family: var(--font-text);
-  cursor: pointer;
-  transition: all 0.3s ease;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  background: linear-gradient(135deg, currentColor, var(--accent-light));
-  color: #000;
-  box-shadow: 0 0 8px currentColor, 0 0 20px var(--accent-light);
-}
-button:hover, .control-btn:hover {
-  transform: scale(1.2) rotate(-3deg);
-  box-shadow: 0 0 35px currentColor, 0 0 70px var(--accent-light);
-  cursor: url('https://cdn-icons-png.flaticon.com/512/60/60787.png'), auto;
+/* Vibración al llegar a CERO */
+.vibrar {
+  animation: vibrar 0.6s ease-in-out;
 }
 
-/* ------------------- INPUT ------------------- */
+/* ----------------------------------------------------
+   INPUT
+---------------------------------------------------- */
 input[type="number"] {
   background: transparent;
   color: currentColor;
-  border: 2px solid var(--accent-light);
-  border-radius: 12px;
-  padding: 0.7rem 1.3rem;
-  text-align: center;
-  font-family: var(--font-text);
   font-weight: bold;
-  box-shadow: 0 0 8px currentColor;
+  padding: 0.5rem 1rem;
+  width: 120px;
+  border: 2px solid currentColor;
+  border-radius: 12px;
+  box-shadow: 0 0 10px currentColor;
   transition: all 0.3s ease;
 }
-input:focus {
+
+input[type="number"]:focus {
   outline: none;
-  border-color: currentColor;
-  box-shadow: 0 0 20px currentColor, 0 0 35px var(--accent-light);
+  transform: scale(1.06);
+  box-shadow: 0 0 20px currentColor, 0 0 50px currentColor;
 }
 
-/* ------------------- RELOJ ARENA ------------------- */
-.reloj-arena {
-  font-size: clamp(3.5rem, 8vw, 5.5rem);
+/* ----------------------------------------------------
+   BOTONES
+---------------------------------------------------- */
+button, .control-btn {
+  border: none;
+  padding: 0.65rem 1rem;
+  font-family: 'Sora', sans-serif;
+  font-weight: 600;
+  border-radius: 14px;
+  cursor: pointer;
+  transition: 0.3s;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  background: transparent;
   color: currentColor;
-  animation: girar 1.5s linear infinite;
-  text-shadow: 0 0 12px currentColor, 0 0 25px var(--accent-light);
+  border: 2px solid currentColor;
+  box-shadow: 0 0 12px currentColor;
 }
 
-/* ------------------- ALERTA CENTRAL ------------------- */
+button:hover, .control-btn:hover {
+  transform: scale(1.15) rotate(-2deg);
+  box-shadow: 0 0 25px currentColor, 0 0 50px currentColor;
+  cursor: pointer;
+}
+
+/* ----------------------------------------------------
+   RELOJ DE ARENA
+---------------------------------------------------- */
+.reloj-arena {
+  font-size: clamp(3rem, 7vw, 4.5rem);
+  animation: girar 1.4s linear infinite;
+  text-shadow: 0 0 15px currentColor, 0 0 30px currentColor;
+}
+
+/* ----------------------------------------------------
+   ALERTA CENTRAL
+---------------------------------------------------- */
 .toast-centro {
   position: fixed;
   top: 50%;
   left: 50%;
-  transform: translate(-50%,-50%);
-  padding: 2rem 3rem;
-  border-radius: 20px;
+  transform: translate(-50%, -50%);
+  padding: 1.6rem 2.2rem;
+  border-radius: 18px;
+  background: rgba(0,0,0,0.55);
+  color: #fff;
   border: 2px solid currentColor;
-  box-shadow: 0 0 35px currentColor, 0 0 70px var(--accent-light);
+  box-shadow: 0 0 40px currentColor, 0 0 100px currentColor;
+  animation: pulse 1.1s infinite alternate;
+  backdrop-filter: blur(8px);
   z-index: 2000;
-  text-align: center;
-  animation: pulse 1s infinite alternate;
 }
+
 .toast-centro .btn-close {
   background: none;
-  border: none;
-  font-size: 1.5rem;
   color: currentColor;
+  border: none;
+  font-size: 1.4rem;
   position: absolute;
   top: 10px;
   right: 10px;
-  cursor: pointer;
 }
 
-/* ------------------- FOOTER FIJO ------------------- */
+/* ----------------------------------------------------
+   FOOTER
+---------------------------------------------------- */
 footer {
   position: fixed;
   bottom: 0;
   left: 0;
   width: 100%;
-  padding: 1rem 0;
+  padding: 0.7rem;
   text-align: center;
-  font-family: var(--font-text);
-  background: rgba(0,0,0,0.6);
-  color: currentColor;
   border-top: 2px solid currentColor;
-  box-shadow: 0 -2px 15px currentColor, 0 -2px 25px var(--accent-light);
-  z-index: 1000;
+  box-shadow: 0 -2px 20px currentColor;
+  background: rgba(0,0,0,0.15);
+  backdrop-filter: blur(5px);
+  z-index: 900;
 }
 
-/* ------------------- ANIMACIONES ------------------- */
-@keyframes flicker {
-  0%,19%,21%,23%,25%,54%,56%,100% { opacity:1; }
-  20%,22%,24%,55% { opacity:0.4; }
+/* ----------------------------------------------------
+   ANIMACIONES
+---------------------------------------------------- */
+@keyframes titleFloat {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
 }
+
+@keyframes neonPulse {
+  0%,100% { opacity: 0.65; }
+  50% { opacity: 1; }
+}
+
 @keyframes girar {
   0% { transform: rotate(0deg); }
   50% { transform: rotate(180deg); }
   100% { transform: rotate(360deg); }
 }
+
 @keyframes pulse {
   0% { transform: scale(1); }
-  50% { transform: scale(1.08); }
-  100% { transform: scale(1); }
+  100% { transform: scale(1.07); }
 }
 
-/* ------------------- RESPONSIVE ------------------- */
+@keyframes vibrar {
+  0% { transform: translateX(0); }
+  20% { transform: translateX(-4px); }
+  40% { transform: translateX(4px); }
+  60% { transform: translateX(-4px); }
+  80% { transform: translateX(4px); }
+  100% { transform: translateX(0); }
+}
+
+/* ----------------------------------------------------
+   RESPONSIVE
+---------------------------------------------------- */
 @media (max-width: 768px) {
-  .digit-box { width: 50px; height: 70px; font-size: 2.2rem; }
-  button, .control-btn { padding: 0.6rem 1.2rem; font-size: 0.95rem; }
-  input[type="number"] { width: 90px; padding:0.5rem 1rem; }
-  h1 { font-size: clamp(2rem, 6vw, 3.5rem); }
+  .digit-box { width: 44px; height: 60px; font-size: 2rem; }
+  .card { padding: 0.9rem; }
+  button { padding: 0.55rem 0.9rem; }
 }

@@ -20,7 +20,7 @@ const Home = () => {
       </div>
 
       <div className="container py-4 text-center">
-        <h1>Proyecto — Contador Futurista</h1>
+        <h1>Cuenta & Reinicia</h1>
         <SecondsCounter modo={modo} />
       </div>
 
