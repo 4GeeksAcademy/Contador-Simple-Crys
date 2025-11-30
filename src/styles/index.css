@@ -1,11 +1,209 @@
-/* 
+/* ------------------- VARIABLES GLOBALES ------------------- */
+:root {
+  --font-title: 'Creepster', cursive;
+  --font-text: 'Share Tech Mono', monospace;
 
-    You can write your own styles here...
-    
-    
-    ...Or you can use the import command to include 
-    other sylesheets into your bunde as well, e.j:
-    
-    import 'relative/path/to/stylesheet.scss';
+  /* Modo LUZ */
+  --bg-light: linear-gradient(135deg, #FFF8F2, #FFD9CC);
+  --card-light: rgba(255, 255, 255, 0.9);
+  --text-light: #B71C1C;
+  --accent-light: #FF6F61;
+  --glow-light: #FF8A75;
+  --border-light: #FFA07A;
 
-*/
+  /* Modo OSCURO */
+  --bg-dark: radial-gradient(circle at top left, #0A0A0A, #1B0B1F);
+  --card-dark: rgba(26, 10, 26, 0.9);
+  --text-dark: #FF414D;
+  --accent-dark: #FF8C42;
+  --glow-dark: #FF5555;
+  --border-dark: #FF2A3A;
+}
+
+/* ------------------- GLOBAL ------------------- */
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-text);
+  transition: all 0.5s ease;
+  overflow-x: hidden;
+  cursor: default;
+}
+
+/* ------------------- MODOS ------------------- */
+.theme-dia {
+  background: var(--bg-light);
+  color: var(--text-light);
+}
+.theme-dia .card {
+  background-color: var(--card-light);
+  color: var(--text-light);
+  border: 2px solid var(--border-light);
+  box-shadow: 0 0 25px var(--glow-light), 0 0 50px var(--accent-light);
+}
+.theme-oscuro {
+  background: var(--bg-dark);
+  color: var(--text-dark);
+}
+.theme-oscuro .card {
+  background-color: var(--card-dark);
+  color: var(--text-dark);
+  border: 2px solid var(--border-dark);
+  box-shadow: 0 0 30px var(--glow-dark), 0 0 60px var(--accent-dark);
+}
+
+/* ------------------- CONTENEDOR PRINCIPAL ------------------- */
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  text-align: center;
+}
+.card {
+  border-radius: 20px;
+  padding: 2rem;
+  backdrop-filter: blur(8px);
+  transition: all 0.3s ease;
+}
+
+/* ------------------- TITULO ------------------- */
+h1 {
+  font-family: var(--font-title);
+  font-size: clamp(2.8rem, 6vw, 4.5rem);
+  margin-bottom: 2rem;
+  text-align: center;
+  text-shadow: 0 0 10px currentColor, 0 0 25px var(--accent-light);
+  animation: flicker 2s infinite alternate;
+}
+
+/* ------------------- DIGITOS ------------------- */
+.digit-box {
+  width: 65px;
+  height: 85px;
+  background-color: transparent;
+  border-radius: 14px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: var(--font-text);
+  font-size: 3rem;
+  border: 2px solid currentColor;
+  margin: 0.15rem;
+  text-shadow: 0 0 10px currentColor, 0 0 20px var(--accent-light);
+  transition: all 0.3s ease;
+}
+
+/* ------------------- BOTONES ------------------- */
+button, .control-btn {
+  border: none;
+  border-radius: 14px;
+  padding: 0.9rem 1.6rem;
+  font-weight: bold;
+  font-family: var(--font-text);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: linear-gradient(135deg, currentColor, var(--accent-light));
+  color: #000;
+  box-shadow: 0 0 8px currentColor, 0 0 20px var(--accent-light);
+}
+button:hover, .control-btn:hover {
+  transform: scale(1.2) rotate(-3deg);
+  box-shadow: 0 0 35px currentColor, 0 0 70px var(--accent-light);
+  cursor: url('https://cdn-icons-png.flaticon.com/512/60/60787.png'), auto;
+}
+
+/* ------------------- INPUT ------------------- */
+input[type="number"] {
+  background: transparent;
+  color: currentColor;
+  border: 2px solid var(--accent-light);
+  border-radius: 12px;
+  padding: 0.7rem 1.3rem;
+  text-align: center;
+  font-family: var(--font-text);
+  font-weight: bold;
+  box-shadow: 0 0 8px currentColor;
+  transition: all 0.3s ease;
+}
+input:focus {
+  outline: none;
+  border-color: currentColor;
+  box-shadow: 0 0 20px currentColor, 0 0 35px var(--accent-light);
+}
+
+/* ------------------- RELOJ ARENA ------------------- */
+.reloj-arena {
+  font-size: clamp(3.5rem, 8vw, 5.5rem);
+  color: currentColor;
+  animation: girar 1.5s linear infinite;
+  text-shadow: 0 0 12px currentColor, 0 0 25px var(--accent-light);
+}
+
+/* ------------------- ALERTA CENTRAL ------------------- */
+.toast-centro {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  padding: 2rem 3rem;
+  border-radius: 20px;
+  border: 2px solid currentColor;
+  box-shadow: 0 0 35px currentColor, 0 0 70px var(--accent-light);
+  z-index: 2000;
+  text-align: center;
+  animation: pulse 1s infinite alternate;
+}
+.toast-centro .btn-close {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: currentColor;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+}
+
+/* ------------------- FOOTER FIJO ------------------- */
+footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 1rem 0;
+  text-align: center;
+  font-family: var(--font-text);
+  background: rgba(0,0,0,0.6);
+  color: currentColor;
+  border-top: 2px solid currentColor;
+  box-shadow: 0 -2px 15px currentColor, 0 -2px 25px var(--accent-light);
+  z-index: 1000;
+}
+
+/* ------------------- ANIMACIONES ------------------- */
+@keyframes flicker {
+  0%,19%,21%,23%,25%,54%,56%,100% { opacity:1; }
+  20%,22%,24%,55% { opacity:0.4; }
+}
+@keyframes girar {
+  0% { transform: rotate(0deg); }
+  50% { transform: rotate(180deg); }
+  100% { transform: rotate(360deg); }
+}
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.08); }
+  100% { transform: scale(1); }
+}
+
+/* ------------------- RESPONSIVE ------------------- */
+@media (max-width: 768px) {
+  .digit-box { width: 50px; height: 70px; font-size: 2.2rem; }
+  button, .control-btn { padding: 0.6rem 1.2rem; font-size: 0.95rem; }
+  input[type="number"] { width: 90px; padding:0.5rem 1rem; }
+  h1 { font-size: clamp(2rem, 6vw, 3.5rem); }
+}

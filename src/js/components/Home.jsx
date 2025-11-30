@@ -1,15 +1,30 @@
-import React from "react";
-
-//include images into your bundle
+import React, { useState } from "react";
 import SecondsCounter from "./SecondsCounter";
+import Footer from "./Footer";
+import ModosTema from "./ModosTema";
 
-//create your first component
+/**
+ * Home
+ * Contenedor principal del contador futurista
+ */
 const Home = () => {
-	return (
-		 <div className="container py-4">
-      <h1 className="mb-4">Proyecto — Contador de segundos</h1>
-      {/* Placeholder: luego importaremos y pegaremos SecondsCounter aquí */}
-	   <SecondsCounter />
+  const [modo, setModo] = useState("dia");
+
+  const toggleModo = () => setModo(modo === "dia" ? "oscuro" : "dia");
+
+  return (
+    <div className={`theme-${modo}`}>
+      {/* Botón alternar tema */}
+      <div className="d-flex justify-content-end p-3">
+        <ModosTema modo={modo} toggleModo={toggleModo} />
+      </div>
+
+      <div className="container py-4 text-center">
+        <h1>Proyecto — Contador Futurista</h1>
+        <SecondsCounter modo={modo} />
+      </div>
+
+      <Footer modo={modo} />
     </div>
   );
 };
