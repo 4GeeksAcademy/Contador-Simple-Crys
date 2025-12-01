@@ -137,9 +137,9 @@ export default function SecondsCounter({ modo }) {
           zIndex: 1100,
           fontSize: "1.5rem",
           borderRadius: "15px",
-          backgroundColor: modo === "dia" ? "#4fefc9ff" : "#0a0a1f",
-          color: modo === "dia" ? "#0ff" : "#00ffea",
-          boxShadow: `0 0 20px ${modo === "dia" ? "#0ff" : "#00ffea"}, 0 0 40px ${modo === "dia" ? "#ff0" : "#ff0090"}`,
+          backgroundColor: modo === "dia" ? "#4f4fefff" : "#0a0a1f",
+          color: modo === "dia" ? "rgba(8, 9, 9, 1)" : "#4d5756ff",
+          boxShadow: `0 0 20px ${modo === "dia" ? "rgba(55, 245, 245, 1)" : "#060606ff"}, 0 0 40px ${modo === "dia" ? "#ff0" : "#ff0090"}`,
         }}>
           <div>¡Se Acabo el TIEMPO! Actualiza La Pagina.</div>
           <button
