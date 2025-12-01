@@ -1,8 +1,7 @@
 import React from "react";
 
 /**
- * Footer
- * Footer personal adaptable al tema
+ * Footer 
  */
 export default function Footer({ modo }) {
   return (

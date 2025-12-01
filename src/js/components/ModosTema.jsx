@@ -3,7 +3,7 @@ import React from "react";
 /**
  * ModosTema
  * Botón que alterna entre modo día y oscuro
- * Usa Bootstrap Icons
+ * EL ICONO QUE USA ES DE BOOTSTRAP
  */
 export default function ModosTema({ modo, toggleModo }) {
   return (

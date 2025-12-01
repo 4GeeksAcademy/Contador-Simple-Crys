@@ -4,7 +4,7 @@ import React from "react";
  * ControlButton
  * Botón con icono universal y texto, animado y adaptable al tema
  * Props:
- * - iconClass: clase del icono de Bootstrap (ej. "bi-play-fill")
+ * - iconClass: clase del icono de Bootstrap 
  * - texto: texto opcional
  * - onClick: función al hacer click
  * - modo: "dia" o "oscuro"

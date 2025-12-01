@@ -5,7 +5,7 @@ import ModosTema from "./ModosTema";
 
 /**
  * Home
- * Contenedor principal del contador futurista
+ CONTENEDOR PRINCIPAL PARA EL CONTADOR 
  */
 const Home = () => {
   const [modo, setModo] = useState("dia");

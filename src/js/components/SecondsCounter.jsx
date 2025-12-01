@@ -137,11 +137,11 @@ export default function SecondsCounter({ modo }) {
           zIndex: 1100,
           fontSize: "1.5rem",
           borderRadius: "15px",
-          backgroundColor: modo === "dia" ? "#1a1a40" : "#0a0a1f",
+          backgroundColor: modo === "dia" ? "#4fefc9ff" : "#0a0a1f",
           color: modo === "dia" ? "#0ff" : "#00ffea",
           boxShadow: `0 0 20px ${modo === "dia" ? "#0ff" : "#00ffea"}, 0 0 40px ${modo === "dia" ? "#ff0" : "#ff0090"}`,
         }}>
-          <div>¡Se alcanzó el número {cuentaRegresiva ? 0 : numeroAlerta}!</div>
+          <div>¡Se Acabo el TIEMPO! Actualiza La Pagina.</div>
           <button
             type="button"
             className="btn-close btn-close-white mt-2"

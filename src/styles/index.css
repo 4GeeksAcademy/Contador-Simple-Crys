@@ -1,6 +1,4 @@
-/* ----------------------------------------------------
-   VARIABLES GLOBALES
----------------------------------------------------- */
+
 :root {
   --font-title: 'Sora', sans-serif;
   --font-text: 'Share Tech Mono', monospace;
@@ -29,6 +27,7 @@ body, html {
   font-family: var(--font-text);
   transition: background 0.5s ease, color 0.5s ease;
   overflow-x: hidden;
+  
 }
 
 /* ----------------------------------------------------
@@ -46,7 +45,7 @@ body, html {
 
 /* ---------- Tarjetas ---------- */
 .theme-dia .card {
-  background: rgba(255,255,255,0.6);
+  background: rgba(46, 2, 244, 0.6);
   border: 2px solid var(--border-dark);
   box-shadow:
     0 0 18px rgba(0,140,255,0.35),
@@ -69,8 +68,10 @@ body, html {
 .container {
   max-width: 700px;
   margin: 0 auto;
-  padding: 1.5rem 1rem;
+  padding: 10px 10px 10px 10px;
   text-align: center;
+  margin-bottom: 20px;
+  
 }
 
 .card {
@@ -201,7 +202,7 @@ button:hover, .control-btn:hover {
 ---------------------------------------------------- */
 .reloj-arena {
   font-size: clamp(3rem, 7vw, 4.5rem);
-  animation: girar 1.4s linear infinite;
+  animation:  3s linear infinite;
   text-shadow: 0 0 15px currentColor, 0 0 30px currentColor;
 }
 
